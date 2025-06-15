@@ -1,0 +1,17 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "postgres",
+  "database": "mobile-mart",
+  "synchronize": false,
+  "logging": true,
+  "entities": ["dist/**/*.entity.js"],
+  "migrations": ["dist/migrations/*.js"],
+  "subscribers": ["dist/**/*.subscriber.js"],
+  "cli": {
+    "entitiesDir": "src",
+    "migrationsDir": "src/migrations"
+  }
+}
