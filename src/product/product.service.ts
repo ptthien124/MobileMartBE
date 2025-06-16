@@ -40,8 +40,6 @@ export class ProductService {
       queryBuilder.andWhere('product.category = :category', { category });
     }
 
-    console.log(exclude, 'exclude');
-
     if (exclude) {
       queryBuilder.andWhere('product.id != :exclude and product.stock > 0', { exclude });
     }

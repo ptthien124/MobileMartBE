@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './product/entities/product.entity';
+import { UserModule } from './user/user.module';
+import { JwtModule } from '@nestjs/jwt';
+import { User } from './user/entities/user.entity';
 
 @Module({
   imports: [
@@ -17,9 +20,15 @@ import { Product } from './product/entities/product.entity';
       database: 'mobile-mart',
       synchronize: false,
       logging: true,
-      entities: [Product],
+      entities: [Product, User],
       migrations: [__dirname + '/migrations/**/*.js'],
       subscribers: []
+    }),
+    UserModule,
+    JwtModule.register({
+      global: true,
+      secret: 'abc',
+      signOptions: { expiresIn: '60s' }
     })
   ],
   controllers: [AppController],
@@ -29,6 +38,6 @@ export class AppModule {
   constructor() {
     console.log('AppModule __dirname:', __dirname);
     console.log('Entities path used:', __dirname + '/**/*.entity{.ts,.js}');
-    console.log('Product entity imported:', Product.name); // Should log 'Product'
+    console.log('Product entity imported:', Product.name);
   }
 }

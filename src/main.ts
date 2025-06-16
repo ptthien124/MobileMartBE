@@ -5,12 +5,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: process.env.ENV === 'local' ? 'http://localhost:3000' : 'https://mobile-mart.vercel.app',
+    origin: 'http://localhost:3000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true
   });
 
-  await app.listen(process.env.PORT ?? 3333, '0.0.0.0');
+  await app.listen(process.env.PORT ?? 3333);
 }
 
 void bootstrap();
